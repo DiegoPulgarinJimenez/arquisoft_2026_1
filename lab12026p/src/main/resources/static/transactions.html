@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction History</title>
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .transactions-table{
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .transactions-table th,
+        .transactions-table td{
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .transactions-table th{
+            background-color: #f2f2f2;
+        }
+
+        .transactions-table tr:nth-child(even){
+            background-color: #f9f9f9;
+        }
+
+        button{
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .nav-button{
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 6px 12px;
+            background-color: #e0e0e0;
+            text-decoration: none;
+            color: black;
+            border: 1px solid #333;
+}
+
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-button">Back to menu</a>
+
+<h2>View Transactions</h2>
+
+<div class="search-container">
+
+    <label for="account">Account number</label>
+    <input id="account" placeholder="Account number">
+
+    <button onclick="loadTransactions()">Search</button>
+
+</div>
+
+<div>
+
+    <table class="transactions-table">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Sender</th>
+            <th>Receiver</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+
+        <tbody id="table">
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+    async function loadTransactions(){
+
+    const account = document.getElementById("account").value
+
+    const response = await fetch(
+        "http://localhost:8080/api/transactions/" + account
+    )
+
+    const table = document.getElementById("table")
+
+    table.innerHTML = ""
+
+    if(!response.ok){
+        alert("Error loading transactions")
+        return
+    }
+
+    const data = await response.json()
+
+    if(data.length === 0){
+        table.innerHTML = `
+        <tr>
+            <td colspan="5">No transactions found</td>
+        </tr>`
+        return
+    }
+
+    data.forEach(t => {
+
+        table.innerHTML += `
+        <tr>
+            <td>${t.id}</td>
+            <td>${t.senderAccountNumber}</td>
+            <td>${t.receiverAccountNumber}</td>
+            <td>${t.amount}</td>
+            <td>${t.timestamp ?? ""}</td>
+        </tr>
+        `
+    })
+}
+
+</script>
+
+</body>
+</html>
