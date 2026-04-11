@@ -99,3 +99,11 @@ Se recuperaron los archivos mediante::
 - Historial local de IntelliJ IDEA (Local History)
 
 ---
+
+### Lección Aprendida
+
+- Realizar commits frecuentes
+- Revisar cambios antes de confirmar
+- No depender únicamente de herramientas gráficas 
+
+---
