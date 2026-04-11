@@ -1,3 +1,4 @@
+[![CI/CD Pipeline](https://github.com/DiegoPulgarinJimenez/arquisoft_2026_1/actions/workflows/build.yml/badge.svg)](https://github.com/DiegoPulgarinJimenez/arquisoft_2026_1/actions/workflows/build.yml)
 
 ---
 ## Laboratorio CI/CD con Spring Boot, GitHub Actions y SonarCloud
@@ -5,6 +6,14 @@
 ### Descripción
 
 Este laboratorio tiene como objetivo implementar un entorno colaborativo de integración continua (CI/CD) utilizando tecnologías modernas como Spring Boot, GitHub Actions y SonarCloud. Se busca automatizar el proceso de construcción, análisis de calidad de código y validación continua de un proyecto backend, siguiendo buenas prácticas de desarrollo colaborativo. 
+
+Se implementa una App sencilla con las siguientes operaciones: 
+
+- Get random nations
+- Get random currencies
+- Get random Aircraft
+- Get application version
+- health check
 
 ---
 ### Objetivos 
@@ -74,6 +83,45 @@ Cada vez que se realiza un push o pull request:
 3. Se construye el proyecto con Maven
 4. Se ejecutan pruebas (si existen)
 5. Se analiza el código con SonarCloud
+
+---
+### Instalación y ejecución
+
+- Para ejecutar el proyecto, utiliza el wrapper de Maven incluido:
+
+Linux o Mac: 
+
+`./mvnw spring-boot:run`
+
+Windows: 
+
+`$ mvnw spring-boot:run`
+
+Esto descargará automáticamente todas las dependencias necesarias y levantará la aplicación.
+
+Para compilar el proyecto y ejecutar las pruebas unitarias:
+
+Linux o MacOS:
+
+`./mvnw clean install`
+
+Windows:
+
+`$ mvnw clean install`
+
+Generación de cobertura de pruebas
+
+Para construir el proyecto (sin ejecutar pruebas) y preparar los reportes necesarios:
+
+`./mvnw -B package -DskipTests --file pom.xml`
+
+Notas importantes: 
+
+En sistemas Linux y macOS se usa `./mvnw`
+
+En Windows se usaría `mvnw.cmd`
+
+El wrapper (mvnw) permite ejecutar Maven sin necesidad de tenerlo instalado globalmente
 
 ---
 ### Análisis con SonarCloud 
