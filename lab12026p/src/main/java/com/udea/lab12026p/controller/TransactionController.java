@@ -2,7 +2,6 @@ package com.udea.lab12026p.controller;
 
 import com.udea.lab12026p.dto.TransactionDTO;
 import com.udea.lab12026p.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping(value = "/api/transactions", produces = "application/json")
 public class TransactionController {
 
-    @Autowired
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
+
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
     @PostMapping
     public ResponseEntity<?> transferMoney(@RequestBody TransactionDTO transactionDTO){
@@ -27,7 +29,6 @@ public class TransactionController {
 
     @GetMapping("/{accountNumber}")
     public List<TransactionDTO> getTransactionsByAccount(@PathVariable String accountNumber){
-        return  transactionService.getTransactionsForAccount(accountNumber);
+        return transactionService.getTransactionsForAccount(accountNumber);
     }
-
 }
