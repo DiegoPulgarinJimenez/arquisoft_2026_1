@@ -116,26 +116,11 @@ jobs:
       - name: Build with Maven
         working-directory: lab22026
         run: mvn -B package -DskipTests
-      #Build the application using Maven
-      - name: Upload JAR
-        #This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
-        uses: actions/upload-artifact@v4
-        with:
-          #Set artifact name
-          name: artifact
-          #From this path
-          path: lab22026/target/lab22026v1.jar
-
-  docker:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
+      #Create Docker image and push it
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: droot0/lab22026v1
+          image: droot0/lab22026
           tags: latest
           registry: docker.io
           dockerfile: lab22026/Dockerfile
