@@ -1,4 +1,5 @@
-FROM openjdk:17
+FROM eclipse-temurin:17-jre-jammy
+WORKDIR /app
+COPY target/lab22026v1.jar app.jar
 EXPOSE 8080
-ADD target/lab22026v1.jar lab22026v1.jar
-ENTRYPOINT ["java", "-jar", "/lab22026v1.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
