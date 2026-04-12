@@ -10,6 +10,7 @@ import java.util.Locale;
 
 @RestController
 public class DataController {
+    private static final String LANGUAGE = "action1";
     @GetMapping("/")
     public String healthCheck(){
         return "Health Check OK";
@@ -23,7 +24,7 @@ public class DataController {
     @GetMapping("/nations")
     public JsonNode getRandomNations(){
         var objectMapper = new ObjectMapper();
-        var faker = new Faker(new Locale("en-US"));
+        var faker = new Faker(new Locale(LANGUAGE));
         var nations = objectMapper.createArrayNode();
 
         for(int i = 0; i < 20; i++){
@@ -41,7 +42,7 @@ public class DataController {
     @GetMapping("/currencies")
     public JsonNode getRandomCurrency(){
         var objectMapper = new ObjectMapper();
-        var faker = new Faker(new Locale("en-US"));
+        var faker = new Faker(new Locale(LANGUAGE));
         var currencies = objectMapper.createArrayNode();
 
         for(int i = 0; i < 20; i++){
@@ -57,7 +58,7 @@ public class DataController {
     @GetMapping("/aviation")
     public JsonNode getRandomAviation(){
         var objectMapper = new ObjectMapper();
-        var faker = new Faker(new Locale("en-US"));
+        var faker = new Faker(new Locale(LANGUAGE));
         var aviations = objectMapper.createArrayNode();
 
         for(int i = 0; i < 20; i++){
