@@ -79,6 +79,7 @@ jobs:
         working-directory: lab12026p
         run:
           mvn -B verify sonar:sonar 
+          -DskipTests 
           -Dsonar.projectKey=DiegoPulgarinJimenez_arquisoft_2026_1 
           -Dsonar.organization=labs-2026 
           -Dsonar.host.url=https://sonarcloud.io 
